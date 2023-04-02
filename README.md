@@ -54,7 +54,8 @@ Third, open "your own" branch and merge "your task" branch
 2. Make sure that you have pip installed 
 3. Install necessary dependencies on Python code. (ex) opencv-python, torch)
 4. run following command to run file
-
+    
+    cd backend
     python <the file name you want to run, make sure to add .py at the end>
 
 
