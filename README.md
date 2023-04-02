@@ -66,20 +66,15 @@ Just follow instruction on the command
 
 ### TO RUN THE CODE [ONLY for BACKEND, not APP]
 1. Make sure that you have Python installed (You need to configure Python, please follow https://code.visualstudio.com/docs/python/python-tutorial)
-2. Make sure that you have pip installed 
-3. Install necessary dependencies on Python code. (ex) opencv-python, torch)
-4. run following command to run file
-
-
-    cd backend
-    
-    python <the file name you want to run, make sure to add .py at the end>
-    
-    py -m python 
-
-5. To install packages
+2. Install necessary dependencies on Python code. (ex) opencv-python, torch)
 
 https://code.visualstudio.com/docs/python/python-tutorial#_install-and-use-packages
+
+3. run python file
+
+https://code.visualstudio.com/docs/python/python-tutorial#_run-hello-world
+
+** If you can run "python" and "pip" command directly on IDE, you are free to use it.**
 
 ## WorkFlow
 
