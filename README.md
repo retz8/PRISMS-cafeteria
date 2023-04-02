@@ -7,7 +7,7 @@ By AI and React, count the number of people eating each meal and provide data an
 1. **main** branch: Locked. You neither can push nor pull. This branch will be the final codes.
 2. **dev** branch: All of the dev works will be combined here.
    You can pull updated code & send Pull Request from your task branch. Don't directly send Pull Request from your own branch.
-3. **your task** branch: You will work on this branch with other members who are working on same task. You will send Pull Request from this branch to "dev" branch when you are done with the task.
+3. **your task** branch: You will work on this branch with other members who are working on the same task. You will send Pull Request from this branch to "dev" branch when you are done with the task.
   "your task" branches: runningAI, algorithm, sendData
 4. **your own** branch: You will mainly work on this branch and merge it to your task branch
 
