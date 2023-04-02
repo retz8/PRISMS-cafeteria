@@ -100,7 +100,7 @@ You will follow this work flow during club time (or whenver you want to work wit
     git switch <your first name>
     git merge dev
     git switch <your task name>
-    git merge dev
+    git merge <your task name>
 
 ### 4. Update code on your own branch or your task branch
 
