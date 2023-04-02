@@ -76,6 +76,14 @@ https://code.visualstudio.com/docs/python/python-tutorial#_run-hello-world
 
 ** If you can run "python" and "pip" command directly on IDE, you are free to use it.**
 
+4. You may need to install python-dotenv package and add .env file to run default main.py
+Please add .env file on under backend folder.
+Then, add this line to .env file.
+
+    TEST="hello world"
+
+
+
 ## WorkFlow
 
 You will follow this work flow during club time (or whenver you want to work with)
