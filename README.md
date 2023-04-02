@@ -20,7 +20,7 @@ By AI and React, count the number of people eating each meal and provide data an
 
 ### 2. Clone GitHub Repository (Make sure to install git https://git-scm.com/book/en/v2/Getting-Started-Installing-Git )
 
-    git clone https://github.com/retz8/PRISMS-house-events-app.git
+    git clone https://github.com/retz8/PRISMS-cafeteria.git
 
 ### 3. Open VS Code 
 
