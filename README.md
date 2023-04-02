@@ -34,7 +34,7 @@ First, open "dev" branch
     git switch dev
     git pull origin dev
     
-Third, open "your task" branch
+Second, open "your task" branch
 
     git switch <your task name>
     git pull origin <your task name>
