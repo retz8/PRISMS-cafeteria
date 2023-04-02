@@ -69,6 +69,7 @@ Just follow instruction on the command
 3. Install necessary dependencies on Python code. (ex) opencv-python, torch)
 4. run following command to run file
     
+    
     cd backend
     python <the file name you want to run, make sure to add .py at the end>
 
