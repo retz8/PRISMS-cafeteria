@@ -64,15 +64,17 @@ You will follow this work flow during club time (or whenver you want to work wit
 
 ### 1. Open your project folder in VS Code
 
-### 2. Open dev branch and fetch updated code. Check update on dev branch regularly
+### 2. Open dev branch and fetch updated code. Check update on dev branch regularly.
 
     git switch dev
     git pull origin dev
 
-### 3. Open your own branch or your task branch
+### 3. Open your own branch or your task branch. You can merge dev branch to keep your local updated
 
     git switch <your first name>
+    git merge dev
     git switch <your task name>
+    git merge dev
 
 ### 4. Update code on your own branch or your task branch
 
