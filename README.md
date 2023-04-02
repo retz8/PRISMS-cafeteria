@@ -8,7 +8,9 @@ By AI and React, count the number of people eating each meal and provide data an
 2. **dev** branch: All of the dev works will be combined here.
    You can pull updated code & send Pull Request from your task branch. Don't directly send Pull Request from your own branch.
 3. **your task** branch: You will work on this branch with other members who are working on the same task. You will send Pull Request from this branch to "dev" branch when you are done with the task.
+
   "your task" branches: runningAI, algorithm, sendData
+
 4. **your own** branch: You will mainly work on this branch and merge it to your task branch
 
 ## Getting Started
@@ -47,7 +49,7 @@ Third, open "your own" branch and merge "your task" branch
 
 ### 5. Wow, you are ready to work on the project!
 
-### TO RUN THE CODE
+### TO RUN THE CODE [ONLY for BACKEND, not APP]
 1. Make sure that you have Python installed
 2. Make sure that you have pip installed 
 3. Install necessary dependencies on Python code. (ex) opencv-python, torch)
