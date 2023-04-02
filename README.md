@@ -50,7 +50,7 @@ Third, open "your own" branch and merge "your task" branch
 ### 5. Wow, you are ready to work on the project!
 
 ### TO RUN THE CODE [ONLY for BACKEND, not APP]
-1. Make sure that you have Python installed
+1. Make sure that you have Python installed (You need to configure Python, please follow https://code.visualstudio.com/docs/python/python-tutorial)
 2. Make sure that you have pip installed 
 3. Install necessary dependencies on Python code. (ex) opencv-python, torch)
 4. run following command to run file
