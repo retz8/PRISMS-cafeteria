@@ -74,8 +74,12 @@ Just follow instruction on the command
     cd backend
     
     python <the file name you want to run, make sure to add .py at the end>
+    
+    py -m python 
 
+5. To install packages
 
+https://code.visualstudio.com/docs/python/python-tutorial#_install-and-use-packages
 
 ## WorkFlow
 
