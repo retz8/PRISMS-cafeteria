@@ -39,10 +39,24 @@ Third, open "your task" branch
     git switch <your task name>
     git pull origin <your task name>
 
-Third, open "your own" branch and merge "your task" branch
+Third, open "your own" branch and merge "your task" branch.
 
     git switch <your first name>
     git merge <your task name> --allow-unrelated-histories
+    
+-------------------------------------------------------------------
+    
+If you try to merge at the first time, you may see something like this. If not move on.
+
+    Committer identity unknown
+    Please tell me who you are ...
+    
+Just follow instruction on the command
+
+    git config --global user.email <user github email address>
+    git config --global user.name <your name>
+    
+-------------------------------------------------------------------
     git add .
     git commit -m "first commit"
     git push -u origin <your first name>
