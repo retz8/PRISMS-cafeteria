@@ -95,12 +95,16 @@ You will follow this work flow during club time (or whenver you want to work wit
     git switch dev
     git pull origin dev
 
-### 3. Open your own branch or your task branch. You can merge dev branch to keep your local updated
+### 3. Open your own branch or your task branch.
 
     git switch <your first name>
-    git merge dev
-    git switch <your task name>
+    
+### 3.5 To align with your code to dev branch or task branch
+
     git merge <your task name>
+    
+    git merge dev
+
 
 ### 4. Update code on your own branch or your task branch
 
