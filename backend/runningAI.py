@@ -1,7 +1,7 @@
 # <runningAI.py>
 # 1) initialize base model (23.04.05~ yolo v8)
 # 2) read image using camera
-# 3) call model.py to process frame/image/video (pass camera input as a parameter to model)
+# 3) call algorithm.py to process frame/image/video (pass camera input as a parameter to model)
 # 4) read return value (# of people) from model.py and return that value
 
 # following is a sample code of yolov5
@@ -11,7 +11,7 @@
 
 import cv2
 import torch
-import aiModel
+import algorithm
 
 class YoloV5:
     def __init__(self):
