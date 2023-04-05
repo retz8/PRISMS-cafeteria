@@ -99,7 +99,7 @@ You will follow this work flow during club time (or whenver you want to work wit
 
     git switch <your first name>
     
-### 3.5 To align with your code to dev branch or task branch (Only dev branch is updated)
+### 3.5 IF YOU WANT TO align with your code to dev branch or task branch (Only when dev branch is updated)
 
     git merge <your task name>
     
@@ -108,7 +108,7 @@ You will follow this work flow during club time (or whenver you want to work wit
 
 ### 4. Update code on your own branch or your task branch
 
-### 4.5 Update your task branch with your own branch
+### 4.5 IF YOU WANT TO update your task branch with your own branch
 
     git switch <your task name>
     git merge <your first name>
