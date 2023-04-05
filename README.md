@@ -99,7 +99,7 @@ You will follow this work flow during club time (or whenver you want to work wit
 
     git switch <your first name>
     
-### 3.5 To align with your code to dev branch or task branch
+### 3.5 To align with your code to dev branch or task branch (Only dev branch is updated)
 
     git merge <your task name>
     
