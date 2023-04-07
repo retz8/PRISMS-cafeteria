@@ -1,9 +1,8 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
-import os
 from dotenv import load_dotenv
-from pathlib import Path
+import os
 import json
 
 def run(data):
