@@ -3,7 +3,6 @@ from firebase_admin import credentials
 from firebase_admin import db
 import os
 from dotenv import load_dotenv
-from pathlib import Path
 import json
 
 def run(data):
@@ -23,4 +22,4 @@ def run(data):
     ref.set({
         "data": data
     })
-    print("sent data")
+    print("Sent data to firebase!")
