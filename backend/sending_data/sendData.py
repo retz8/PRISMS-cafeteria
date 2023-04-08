@@ -22,4 +22,4 @@ def run(data):
     ref.set({
         "data": data
     })
-    print("sent data")
+    print("Sent data to firebase!")
