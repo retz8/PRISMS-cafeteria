@@ -11,7 +11,7 @@
 
 import cv2
 import torch
-import aiModel
+import algorithm
 
 class YoloV5:
     def __init__(self):
