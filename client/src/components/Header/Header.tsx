@@ -54,6 +54,7 @@ export default function Header() {
             <Link
               className={styles.itemWrapper}
               to={item.name === "Home" ? "/" : item.name.toLowerCase()}
+              title={`${item.name} page`}
             >
               {item.icon}
               <p className={styles.itemName}>{item.name}</p>
