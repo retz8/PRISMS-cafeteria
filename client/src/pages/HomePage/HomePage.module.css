@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+}
+
+.graphContainer {
+  flex: 1;
+  height: 90vh;
+}
+
+.tableContainer {
+  flex: 1;
+  height: 90vh;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
