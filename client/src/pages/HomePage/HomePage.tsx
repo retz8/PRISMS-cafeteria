@@ -30,6 +30,7 @@ export default function HomePage() {
   // Read data from DB
   // If data changes in DB, this will automatically read data
   useEffect(() => {
+    console.log("Wow Home");
     onValue(ref(db), (snapshot) => {
       const data = snapshot.val();
       if (data !== null) {
