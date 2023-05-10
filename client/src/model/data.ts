@@ -3,5 +3,6 @@ export type Data = {
   type: "breakfast" | "lunch" | "dinner" | "brunch";
   start: string;
   end: string;
-  number: number;
+  number: string; // separated by commas
+  total: number;
 };

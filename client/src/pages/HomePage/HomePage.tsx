@@ -33,6 +33,7 @@ export default function HomePage() {
     onValue(ref(db), (snapshot) => {
       const data = snapshot.val();
       if (data !== null) {
+        console.log(data);
         initializeData(data);
       }
     });
