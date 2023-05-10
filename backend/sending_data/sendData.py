@@ -7,6 +7,11 @@ from typing import List
 import json
 
 def run(data) -> tuple[List[int], str]:
+
+    # data format: 
+    # { date: , start: , end: , type: , number: , total: }
+    # only total is a number
+
     load_dotenv()
     URL = os.getenv("FIREBASE_REALTIME_DATABASE_URL") 
     with open("keys.json") as f:

@@ -26,14 +26,14 @@ class YoloV5:
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
+
+    # run() will be called during the meal (measurement)
     def run(self):
-        totalPeople = 0
-        # Start capturing frames from the camera
+
         while True:
             # Capture a frame from the camera
             ret, frame = self.cap.read()
 
-            # Check if frame is captured successfully
             if not ret:
                 break
 
@@ -44,9 +44,7 @@ class YoloV5:
             results = self.model(img, size=640)
 
             # Run additional algorithm 
-            number = algorithm.process(results, img)
-            # Update number of people eating in each frame
-            total += number
+            proccessed_results = algorithm.process(results, img)
 
             # Draw bounding boxes around detected objects
             results.render()
@@ -62,5 +60,9 @@ class YoloV5:
         self.cap.release()
         cv2.destroyAllWindows()
 
-        # Return total number of people eating in one meal
-        return total
+        #--------------------------------
+        # formatting data
+        #--------------------------------
+
+        # Return finalData during measurement
+        return finalData
