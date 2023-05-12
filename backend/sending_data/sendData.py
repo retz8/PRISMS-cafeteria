@@ -36,3 +36,4 @@ def run(counter, data):
             return (data, f"Sent to Firebase! [New data point {counter}]")
     except Exception as e:
         return (data, f"ERROR: Failed to send data to Firebase | {e}")
+

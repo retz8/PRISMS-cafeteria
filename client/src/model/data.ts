@@ -1,0 +1,8 @@
+export type Data = {
+  date: string;
+  type: "breakfast" | "lunch" | "dinner" | "brunch";
+  start: string;
+  end: string;
+  number: string; // separated by commas
+  total: number;
+};
