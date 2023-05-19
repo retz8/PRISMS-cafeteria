@@ -1,13 +1,14 @@
 import { proxy } from "valtio";
-import { Data } from "../model/data";
+import { Data, MockData } from "../model/data";
 
-// 이거 마치 useContext
+// like useContext
+// change Data to MockData in publication
 const state = proxy({
-  data: <Data[]>[],
-  breakfast: <Data[]>[],
-  lunch: <Data[]>[],
-  dinner: <Data[]>[],
-  brunch: <Data[]>[],
+  data: <MockData[]>[],
+  breakfast: <MockData[]>[],
+  lunch: <MockData[]>[],
+  dinner: <MockData[]>[],
+  brunch: <MockData[]>[],
 });
 
 export default state;
