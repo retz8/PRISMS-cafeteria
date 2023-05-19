@@ -1,8 +1,8 @@
 # <runningAI.py>
 # 1) initialize base model (23.04.05~ yolo v8)
 # 2) read image using camera
-# 3) call algorithm.py to process frame/image/video (pass camera input as a parameter to model)
-# 4) read return value (# of people) from algorithm.py and return that value
+# 3) call model.py to process frame/image/video (pass camera input as a parameter to model)
+# 4) read return value (# of people) from model.py and return that value
 
 # following is a sample code of yolov5
 # this code is just an example! feel free to change!
@@ -26,14 +26,14 @@ class YoloV5:
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
+
+    # run() will be called during the meal (measurement)
     def run(self):
-        totalPeople = 0
-        # Start capturing frames from the camera
+
         while True:
             # Capture a frame from the camera
             ret, frame = self.cap.read()
 
-            # Check if frame is captured successfully
             if not ret:
                 break
 
@@ -44,9 +44,7 @@ class YoloV5:
             results = self.model(img, size=640)
 
             # Run additional algorithm 
-            number = algorithm.process(results, img)
-            # Update number of people eating in each frame
-            total += number
+            proccessed_results = algorithm.process(results, img)
 
             # Draw bounding boxes around detected objects
             results.render()
@@ -62,5 +60,9 @@ class YoloV5:
         self.cap.release()
         cv2.destroyAllWindows()
 
-        # Return total number of people eating in one meal
-        return total
+        #--------------------------------
+        # formatting data
+        #--------------------------------
+
+        # Return finalData during measurement
+        return finalData

@@ -9,6 +9,15 @@ def main() :
 
     # feel free to change this code to test by yourself
     # call runningAI during meal time
+
+    # ------------------
+    # Data measurement logic + call runningAI.py
+    # ------------------
+
+    # ------------------
+    # call sendData.py with data received from runningAI.py
+    # ------------------
+
     api_key = os.environ.get('TEST')
     print(api_key)
 
