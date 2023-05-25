@@ -106,7 +106,7 @@ def main():
     # call sendData.py with data received from runningAI.py
     # ------------------
 
-    logging.info(f"Sending data for {meal}")
+    logging.debug(f"Sending data for {meal}")
 
     with open("counter.txt", "r") as f:
         counter = int(f.read())
@@ -122,6 +122,7 @@ def main():
     }
     logging.debug(f"data={data}")
 
+    # save a copy of the data locally
     with open("data.json", "r") as f:
         data_json = json.load(f)
     data_json.update({str(counter): data})
@@ -135,6 +136,8 @@ def main():
 
     with open("counter.txt", "w") as f:
         f.write(counter + 1)
+
+    logging.info(f"Done processing {meal}")
 
 
 if __name__ == "__main__":
