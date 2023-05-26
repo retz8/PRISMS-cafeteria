@@ -3,9 +3,9 @@
 import os
 import sys
 import json
+import crontab
 import logging
 import datetime
-from crontab import CronTab
 
 import runningAI
 import sending_data.sendData
@@ -25,7 +25,11 @@ def main():
     # call runningAI during meal time
 
     if "--cwd" in sys.argv:
-        os.chdir(sys.argv[sys.argv.index("--cwd") + 1])
+        try:
+            os.chdir(sys.argv[sys.argv.index("--cwd") + 1])
+        except IndexError:
+            print("No cwd specified")
+            return
 
     if "--run" not in sys.argv:
         with open("counter.txt", "w") as f:
@@ -34,7 +38,8 @@ def main():
         with open("data.json", "w") as f:
             json.dump({}, f)
 
-        with CronTab(user="root") as cron:
+        # set up cron jobs to run this script at meal times
+        with crontab.CronTab(user="root") as cron:
             breakfast = cron.new(
                 command=f"python3 {__file__} --run breakfast --cwd {os.getcwd()}"
             )
@@ -82,36 +87,37 @@ def main():
     try:
         meal = sys.argv[sys.argv.index("--run") + 1]
     except IndexError:
-        logging.error("No meal name specified")
+        print("No meal name specified")
         return
 
     if meal not in meal_end_time:
-        logging.error("Invalid meal name")
+        print("Invalid meal name")
         return
 
     # ------------------
     # Data measurement logic + call runningAI.py
     # ------------------
 
-    logging.info(f"Running AI for {meal}")
+    logging.info(f"<{meal}> AI started")
     start_time = datetime.datetime.now()
 
     results = runningAI.run_till(meal_end_time[meal])
 
     end_time = datetime.datetime.now()
-    logging.info(f"AI finished running for {meal}")
+    logging.info(f"<{meal}> AI finished running")
     logging.debug(f"results={results}")
 
     # ------------------
     # call sendData.py with data received from runningAI.py
     # ------------------
 
-    logging.debug(f"Sending data for {meal}")
+    logging.info(f"<{meal}> Uploading data")
 
     with open("counter.txt", "r") as f:
         counter = int(f.read())
     logging.debug(f"counter={counter}")
 
+    # format data as a dictionary to be JSON-serialized by firebase_admin
     data = {
         "date": start_time.strftime("%Y-%m-%d"),
         "start": start_time,
@@ -130,14 +136,14 @@ def main():
         json.dump(data_json, f)
 
     try:
-        sending_data.sendData.run(counter, data)
+        response = sending_data.sendData.run(counter, data)
     except Exception as e:
         logging.exception(e)
+    finally:
+        logging.info(f"<{meal}> {response}")
 
     with open("counter.txt", "w") as f:
         f.write(counter + 1)
-
-    logging.info(f"Done processing {meal}")
 
 
 if __name__ == "__main__":
