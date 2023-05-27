@@ -123,9 +123,9 @@ def process(last_positions, positions, screen_dimensions, line_position=50, debu
 # ]
 
 # for tc in test_cases:
-    result = process(tc[0], tc[1], [10, 10], debug_level=4)  # debug_level=2
-    # print(f"\nran test case, got:\n{result}")
-    assert len(result) == tc[2], f"expected {tc[2]} results, got {len(result)}\n"
+    # result = process(tc[0], tc[1], [10, 10], debug_level=4)  # debug_level=2
+    # # print(f"\nran test case, got:\n{result}")
+    # assert len(result) == tc[2], f"expected {tc[2]} results, got {len(result)}\n"
 
 '''
 V-ALPHA: CURRENT FAILURES:
