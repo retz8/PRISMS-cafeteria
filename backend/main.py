@@ -95,7 +95,7 @@ def main():
     # Run AI to measure the number of people eating during meal
     ai = AI()
     # an array of number of people ate in each interval
-    results = ai.run_till(start_time, meal_end_time[meal])
+    results = ai.run_till(meal_end_time[meal])
 
     end_time = datetime.datetime.now()
     logging.info(f"<{meal}> AI finished running")
