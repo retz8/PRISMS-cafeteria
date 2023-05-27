@@ -1,68 +1,72 @@
 # <runningAI.py>
-# 1) initialize base model (23.04.05~ yolo v8)
-# 2) read image using camera
-# 3) call model.py to process frame/image/video (pass camera input as a parameter to model)
-# 4) read return value (# of people) from model.py and return that value
-
-# following is a sample code of yolov5
-# this code is just an example! feel free to change!
-
-# feel free to change format or use mock data to test the code
-
+# - measurement until end_time
+# - run base model and pass previous & current frame's detection results
+# - call algorithm.py and process return value to an array (number)
+import datetime
+from datetime import timedelta
 import cv2
 import torch
+
 import algorithm
 
-class YoloV5:
+time_interval_min = 5
+
+class AI:
     def __init__(self):
-        # Load YOLOv5 model
-        self.model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True).autoshape()  # or yolov5m, yolov5l, yolov5x, etc.
+        # Load base AI Model (yolov5s)
+        self.model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True).autoshape()
+        # Set device
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-        # Set device to run the model on the Jetson Nano's GPU
-        self.device = torch.device('cuda')
-
-        # Initialize the camera
         self.cap = cv2.VideoCapture(0)
+        # 640 * 480
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
+    def run_till(self, end_time):
+        '''
+        end_time : ending time of measurement
+        ''' 
+        # return value: array of number of people in each interval
+        ret = [] 
 
-    # run() will be called during the meal (measurement)
-    def run(self):
+        # number of people in each interval
+        interval_people = 0
+        # handle interval
+        start_time = datetime.datetime.now()
+        next_count_time = start_time + timedelta(minutes=5)
+        
+        # previous frame's detection results
+        prev_results = None
 
-        while True:
+        while datetime.datetime.now().time() < end_time:
             # Capture a frame from the camera
             ret, frame = self.cap.read()
 
             if not ret:
                 break
 
-            # Preprocess the frame
             img = torch.from_numpy(frame).to(self.device)
+            results = self.model(img)
 
-            # Run the YOLOv5 model on the frame
-            results = self.model(img, size=640)
+            # return change in people passed by in current frame
+            processed_results = algorithm.process(prev_results, results, [640, 480], 3)
+            frame_people = len(processed_results)
+            interval_people = interval_people + frame_people
 
-            # Run additional algorithm 
-            proccessed_results = algorithm.process(results, img)
+            prev_results = results
 
-            # Draw bounding boxes around detected objects
-            results.render()
+            # Check if it's time to call count_people()
+            current_time = datetime.datetime.now()
+            if current_time >= next_count_time:
+                ret.append(interval_people)
+                next_count_time += timedelta(minutes=time_interval_min)
 
-            # Display the processed frame
-            cv2.imshow('YOLOv5', results.img)
+                interval_people = 0
+            
+            cv2.waitKey(1)
 
-            # Wait for key press to exit
-            if cv2.waitKey(1) == ord('q'):
-                break
-
-        # Release the camera and close all windows
         self.cap.release()
-        cv2.destroyAllWindows()
+        return ret
 
-        #--------------------------------
-        # formatting data
-        #--------------------------------
 
-        # Return finalData during measurement
-        return finalData

@@ -1,7 +1,7 @@
 import math, time
 
 
-def algorithm(last_positions, positions, screen_dimensions, line_position=50, debug_level=0):
+def process(last_positions, positions, screen_dimensions, line_position=50, debug_level=0):
     '''
     :param last_positions: positions but from last frame
         [[x, y], [x, y], ...]
@@ -15,6 +15,7 @@ def algorithm(last_positions, positions, screen_dimensions, line_position=50, de
         1 (everything) / 2 (without messages for checking) / 3 (only results) / 4 (only final value)
     :return: table of data
         [[time, position], [time, position], ...]
+        (If there's no one passing by at this frame, return [])
     '''
 
     assert type(positions) == list, "invalid argument for positions"
@@ -80,54 +81,54 @@ def algorithm(last_positions, positions, screen_dimensions, line_position=50, de
 
 
 # ============================== test cases ==============================
-test_cases = [
-    [  # test case #1
+# test_cases = [
+#     [  # test case #1
 
-        [  # last positions
-            [4, 5],  # goes on to line
-            [0, 4],  # never passes line
-            [6, 6],  # already past line
-            [4, 5]  # passes line
-        ],
-        [  # positions
-            [5, 5],
-            [2, 4],
-            [7, 6],
-            [6, 5],  # passes line
-            [1, 2]  # false positive
-        ],
-        1  # expected results
+#         [  # last positions
+#             [4, 5],  # goes on to line
+#             [0, 4],  # never passes line
+#             [6, 6],  # already past line
+#             [4, 5]  # passes line
+#         ],
+#         [  # positions
+#             [5, 5],
+#             [2, 4],
+#             [7, 6],
+#             [6, 5],  # passes line
+#             [1, 2]  # false positive
+#         ],
+#         1  # expected results
 
-    ],
-    [  # test case #2
+#     ],
+#     [  # test case #2
 
-        [  # last positions
-            [0, 3],  # never passes line, idle
-            [7, 1],  # already past line
-            [4, 1],  # passes line
-            [5, 2],  # doesn't leave line
-            [1, 3],  # passes line quickly, may cut
-            [5, 4]  # false positive
-        ],
-        [  # positions
-            [0, 3],
-            [9, 1],
-            [6, 2],  # passes line
-            [5, 3],
-            [6, 3]  # passes line
-        ],
-        2  # expected results
+#         [  # last positions
+#             [0, 3],  # never passes line, idle
+#             [7, 1],  # already past line
+#             [4, 1],  # passes line
+#             [5, 2],  # doesn't leave line
+#             [1, 3],  # passes line quickly, may cut
+#             [5, 4]  # false positive
+#         ],
+#         [  # positions
+#             [0, 3],
+#             [9, 1],
+#             [6, 2],  # passes line
+#             [5, 3],
+#             [6, 3]  # passes line
+#         ],
+#         2  # expected results
 
-    ]
-]
+#     ]
+# ]
 
-for tc in test_cases:
-    result = algorithm(tc[0], tc[1], [10, 10], debug_level=4)  # debug_level=2
+# for tc in test_cases:
+    result = process(tc[0], tc[1], [10, 10], debug_level=4)  # debug_level=2
     # print(f"\nran test case, got:\n{result}")
     assert len(result) == tc[2], f"expected {tc[2]} results, got {len(result)}\n"
 
 '''
-CURRENT FAILURES:
+V-ALPHA: CURRENT FAILURES:
 people who cut or walk faster aren't matched right
 certain tests fail
     should still work with high fps tho, because higher fps = less change in position

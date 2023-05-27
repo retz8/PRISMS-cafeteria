@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import os
 import sys
 import json
@@ -8,8 +7,8 @@ import logging
 import datetime
 
 import runningAI
+from runningAI import AI
 import sending_data.sendData
-
 
 meal_end_time = {
     "breakfast": datetime.time(hour=7, minute=55),
@@ -19,11 +18,7 @@ meal_end_time = {
     "dinner": datetime.time(hour=18, minute=30),
 }
 
-
 def main():
-    # feel free to change this code to test by yourself
-    # call runningAI during meal time
-
     if "--cwd" in sys.argv:
         try:
             os.chdir(sys.argv[sys.argv.index("--cwd") + 1])
@@ -94,23 +89,17 @@ def main():
         print("Invalid meal name")
         return
 
-    # ------------------
-    # Data measurement logic + call runningAI.py
-    # ------------------
-
     logging.info(f"<{meal}> AI started")
     start_time = datetime.datetime.now()
 
-    results = runningAI.run_till(meal_end_time[meal])
+    # Run AI to measure the number of people eating during meal
+    ai = AI()
+    # an array of number of people ate in each interval
+    results = ai.run_till(start_time, meal_end_time[meal])
 
     end_time = datetime.datetime.now()
     logging.info(f"<{meal}> AI finished running")
     logging.debug(f"results={results}")
-
-    # ------------------
-    # call sendData.py with data received from runningAI.py
-    # ------------------
-
     logging.info(f"<{meal}> Uploading data")
 
     with open("counter.txt", "r") as f:
@@ -135,6 +124,7 @@ def main():
     with open("data.json", "w") as f:
         json.dump(data_json, f)
 
+    # send data to firebase (sendData)
     try:
         response = sending_data.sendData.run(counter, data)
     except Exception as e:

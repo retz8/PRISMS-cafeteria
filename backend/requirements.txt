@@ -1,3 +1,5 @@
 python-crontab
 firebase_admin
 python-dotenv
+opencv-python
+torch
