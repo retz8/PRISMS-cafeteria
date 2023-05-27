@@ -50,7 +50,7 @@ class AI:
             results = self.model(img)
 
             # return change in people passed by in current frame
-            processed_results = algorithm.process(prev_results, results, [640, 480], 3)
+            processed_results = algorithm.process(prev_results, results, [640, 480], 50, 3)
             frame_people = len(processed_results)
             interval_people = interval_people + frame_people
 
