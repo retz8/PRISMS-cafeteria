@@ -1,0 +1,3 @@
+python-crontab
+firebase_admin
+python-dotenv
