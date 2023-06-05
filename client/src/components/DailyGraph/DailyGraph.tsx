@@ -1,8 +1,9 @@
 // MealGraph [MealPages (Breakfast, Lunch, Dinner, Brunch)]
-import styles from "./DailyGraph.module.css";
+
 import ReactEcharts from "echarts-for-react";
-import { Data, MockData } from "../../model/data";
+import { MockData } from "../../model/data";
 import { getMealSchedule } from "../../helpers/getMealSchedule";
+import styles from "./DailyGraph.module.css";
 
 type Props = {
   mealType: "breakfast" | "lunch" | "dinner" | "brunch";

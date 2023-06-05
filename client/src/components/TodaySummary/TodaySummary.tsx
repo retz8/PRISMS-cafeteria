@@ -1,5 +1,3 @@
-import React from "react";
-import { MockData } from "../../model/data";
 import styles from "./TodaySummary.module.css";
 import { useSnapshot } from "valtio";
 import state from "../../store";

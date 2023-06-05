@@ -13,7 +13,7 @@
 import { useSnapshot } from "valtio";
 import styles from "./WholeTable.module.css";
 import state from "../../store";
-import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 
 export default function WholeTable() {
   const snap = useSnapshot(state);
