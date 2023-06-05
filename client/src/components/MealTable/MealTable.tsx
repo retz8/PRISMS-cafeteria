@@ -27,12 +27,9 @@ export default function MealTable({ mealType }: Props) {
       : mealType === "dinner"
       ? snap.dinner
       : snap.brunch;
-
-  const [viewDate, setViewDate] = useState<string>(data[data.length - 1].date);
   const [viewData, setViewData] = useState<MockData>(data[data.length - 1]);
 
   function handleClick(date: string): void {
-    setViewDate(date);
     setViewData(data.filter((item) => item.date === date)[0]);
   }
 

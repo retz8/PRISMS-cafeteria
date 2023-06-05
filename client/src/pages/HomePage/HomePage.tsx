@@ -10,7 +10,6 @@ import state from "../../store";
 import Loading from "../../components/Loading/Loading";
 import WholeGraph from "../../components/WholeGraph/WholeGraph";
 import WholeTable from "../../components/WholeTable/WholeTable";
-import mockData from "../../assets/mock/data.json";
 import TodaySummary from "../../components/TodaySummary/TodaySummary";
 
 export default function HomePage() {
@@ -19,8 +18,6 @@ export default function HomePage() {
 
   // Set all of the data using valtio
   // Data is only renewed when user is on the homepage
-  // (To reduce the unnecessary server request from other pages)
-  // please change MockData to Data in final code
   const initializeData = (wholeData: MockData[]) => {
     state.data = wholeData;
     state.breakfast = wholeData.filter((item) => item.type === "breakfast");
@@ -34,16 +31,13 @@ export default function HomePage() {
   // Read data from DB
   // If data changes in DB, this will automatically read data
   useEffect(() => {
-    // onValue(ref(db), (snapshot) => {
-    //   const data = snapshot.val();
-    //   if (data !== null) {
-    //     //console.log(data);
-    //     initializeData(data);
-    //   }
-    // });
-
-    // use mockData
-    initializeData(mockData);
+    onValue(ref(db), (snapshot) => {
+      const data = snapshot.val();
+      if (data !== null) {
+        //console.log(data);
+        initializeData(data);
+      }
+    });
   }, []);
 
   if (!dataUploaded) {
