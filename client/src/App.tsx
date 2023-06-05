@@ -1,6 +1,6 @@
 import BreakfastPage from "./pages/BreakfastPage/BreakfastPage";
 import HomePage from "./pages/HomePage/HomePage";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LunchPage from "./pages/LunchPage/LunchPage";
 import DinnerPage from "./pages/DinnerPage/DinnerPage";
 import BrunchPage from "./pages/BrunchPage/BrunchPage";
@@ -12,13 +12,13 @@ export default function App() {
     <Router>
       <div className={styles.container}>
         <Header />
-        <Switch>
+        <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/breakfast" element={<BreakfastPage />} />
           <Route path="/lunch" element={<LunchPage />} />
           <Route path="/dinner" element={<DinnerPage />} />
           <Route path="/brunch" element={<BrunchPage />} />
-        </Switch>
+        </Routes>
       </div>
     </Router>
   );
