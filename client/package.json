@@ -12,7 +12,7 @@
   "dependencies": {
     "@emotion/react": "11.11.0",
     "@emotion/styled": "11.11.0",
-    "@mui/x-data-grid": "6.3.1",
+    "@mui/x-data-grid": "6.6.0",
     "echarts": "5.4.2",
     "echarts-for-react": "3.0.2",
     "firebase": "9.21.0",
