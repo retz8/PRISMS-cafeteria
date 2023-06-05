@@ -11,6 +11,7 @@ import Loading from "../../components/Loading/Loading";
 import WholeGraph from "../../components/WholeGraph/WholeGraph";
 import WholeTable from "../../components/WholeTable/WholeTable";
 import mockData from "../../assets/mock/data.json";
+import TodaySummary from "../../components/TodaySummary/TodaySummary";
 
 export default function HomePage() {
   //const snap = useSnapshot(state);
@@ -53,6 +54,7 @@ export default function HomePage() {
     dataUploaded && (
       <div className={styles.container}>
         <div className={styles.graphContainer}>
+          <TodaySummary mealType={"breakfast"} isAll={true} />
           <WholeGraph />
         </div>
 

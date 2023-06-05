@@ -13,13 +13,65 @@
 import { useSnapshot } from "valtio";
 import styles from "./WholeTable.module.css";
 import state from "../../store";
+import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
 
 export default function WholeTable() {
   const snap = useSnapshot(state);
   const { data } = snap;
 
-  // please open dev console on web browser and check the format of data first
-  console.log(data);
+  const rows = data.map((item, index) => {
+    return {
+      id: index,
+      date: item.date,
+      meal: item.type,
+      total: item.total,
+    };
+  });
 
-  return <div className={styles.container}>WholeTable</div>;
+  const columns = [
+    {
+      field: "date",
+      headerName: "Date",
+      flex: 1,
+    },
+    {
+      field: "meal",
+      headerName: "Meal",
+      flex: 1,
+    },
+    {
+      field: "total",
+      headerName: "Total",
+      flex: 1,
+    },
+    // {
+    //   field: "action",
+    //   headerName: "Action",
+    //   flex: 1,
+    //   renderCell: (params: GridRenderCellParams) => {
+    //     return (
+    //       <>
+    //         <button
+    //           className={styles.viewButton}
+    //           onClick={() => handleClick(params.row.date)}
+    //         >
+    //           View
+    //         </button>
+    //       </>
+    //     );
+    //   },
+    // },
+  ];
+
+  return (
+    <div className={styles.container}>
+      <DataGrid
+        initialState={{
+          sorting: { sortModel: [{ field: "date", sort: "desc" }] },
+        }}
+        rows={rows}
+        columns={columns}
+      />
+    </div>
+  );
 }

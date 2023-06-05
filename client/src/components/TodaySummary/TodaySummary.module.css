@@ -1,0 +1,25 @@
+.container {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.07);
+}
+.title {
+  font-size: x-large;
+}
+
+.numberContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+}
+
+.text {
+  font-size: larger;
+  font-weight: bold;
+}
+.baseText {
+  margin-left: 5px;
+}

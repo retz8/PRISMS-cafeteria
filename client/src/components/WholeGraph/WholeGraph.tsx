@@ -5,14 +5,76 @@
 
 import { useSnapshot } from "valtio";
 import state from "../../store";
+import ReactEcharts from "echarts-for-react";
 import styles from "./WholeGraph.module.css";
 
 export default function WholeGraph() {
   const snap = useSnapshot(state);
-  const { data } = snap;
+  const { data, breakfast, lunch, dinner, brunch } = snap;
 
-  // please open dev console on web browser and check the format of data first
-  console.log(data);
+  const option = {
+    title: {
+      text: "All Meals",
+    },
+    tooltip: {
+      trigger: "axis",
+    },
+    toolbox: {
+      feature: {
+        saveAsImage: {},
+      },
+    },
+    legend: {
+      data: ["Breakfast", "Lunch", "Dinner", "Brunch"],
+    },
+    xAxis: {
+      // meal types
+      type: "category",
+      boundaryGap: false,
+      data: breakfast.map((item) => item.date),
+    },
+    yAxis: {
+      type: "value",
+    },
+    series: [
+      {
+        name: "Breakfast",
+        type: "line",
+        label: {
+          show: false,
+        },
+        data: breakfast.map((item) => item.total),
+      },
+      {
+        name: "Lunch",
+        type: "line",
+        label: {
+          show: false,
+        },
+        data: lunch.map((item) => item.total),
+      },
+      {
+        name: "Dinner",
+        type: "line",
+        label: {
+          show: false,
+        },
+        data: dinner.map((item) => item.total),
+      },
+      {
+        name: "Brunch",
+        type: "line",
+        label: {
+          show: false,
+        },
+        data: brunch.map((item) => item.total),
+      },
+    ],
+  };
 
-  return <div className={styles.container}>WhooleGrpah</div>;
+  return (
+    <div className={styles.container}>
+      <ReactEcharts option={option} />
+    </div>
+  );
 }

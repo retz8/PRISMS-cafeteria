@@ -4,30 +4,27 @@
 // Examples: https://echarts.apache.org/examples/en/index.html
 
 import { useSnapshot } from "valtio";
-import styles from "./MealGraph.module.css";
+import styles from "./DailyGraph.module.css";
 import ReactEcharts from "echarts-for-react";
 import state from "../../store";
+import { Data, MockData } from "../../model/data";
+import { getMealSchedule } from "../../helpers/getMealSchedule";
 
 type Props = {
   mealType: "breakfast" | "lunch" | "dinner" | "brunch";
+  data: MockData; // change to Data
 };
 
-export default function MealGraph({ mealType }: Props) {
-  const snap = useSnapshot(state);
+export default function DailyGraph({ mealType, data }: Props) {
+  const dataNumber = data.number.replace(/\s/g, "").split(",").map(Number);
 
-  // define data by mealType
-  const data =
-    mealType === "breakfast"
-      ? snap.breakfast
-      : mealType === "lunch"
-      ? snap.lunch
-      : mealType === "dinner"
-      ? snap.dinner
-      : snap.brunch;
+  const mealScheduleArr = getMealSchedule(mealType);
 
   const option = {
     title: {
-      text: `${mealType[0].toLocaleUpperCase()}${mealType.slice(1)}`,
+      text: `${data.date} ${mealType[0].toLocaleUpperCase()}${mealType.slice(
+        1
+      )}`,
     },
     tooltip: {
       trigger: "axis",
@@ -39,24 +36,17 @@ export default function MealGraph({ mealType }: Props) {
     },
     xAxis: {
       type: "category",
-      data: data.map((item) => item.date),
+      boundaryGap: false,
+      data: mealScheduleArr,
     },
     yAxis: {
       type: "value",
-      min: 0,
-      max: 150,
-      alignTicks: true,
     },
     series: [
       {
-        name: "# of ppl",
+        name: "Number of People",
         type: "line",
-        color: "darkred",
-        data: data.map((item) => item.total),
-        alignTicks: true,
-        // tooltip: {
-        //   valueFormatter: (value: string) => value,
-        // },
+        data: dataNumber,
         label: {
           show: true,
           position: "top",
@@ -68,12 +58,6 @@ export default function MealGraph({ mealType }: Props) {
   return (
     <div className={styles.container}>
       <ReactEcharts option={option} />
-      {/* <div>
-        <p>{`${mealType}'s meal data`}</p>
-        {data.map((item, index) => (
-          <p key={index}>{`${item.date}: ${item.total}`}</p>
-        ))}
-      </div> */}
     </div>
   );
 }
